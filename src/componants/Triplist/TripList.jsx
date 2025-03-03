@@ -49,7 +49,7 @@ const TripsList = () => {
   ];
 
   return (
-    <div className="container md:max-w-4/5 mx-auto md:p-8 p-2">
+    <div className="container md:max-w-5/6 mx-auto md:p-8 p-2">
       <h2 className="text-3xl font-bold mb-8">Popular Trips</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {trips.map(trip => (

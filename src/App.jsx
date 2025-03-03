@@ -6,8 +6,9 @@ import Video from "./componants/Video/Video";
 function App() {
   return (
     <div className="">
-   <Video/>
+ 
     <TripsList/>
+    <Video/>
     <Footer/>
   </div>
   );
