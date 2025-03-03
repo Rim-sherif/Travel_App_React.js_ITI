@@ -1,11 +1,13 @@
 import "./App.css";
+import Footer from "./componants/Footer/Footer";
+import TripsList from "./componants/Triplist/TripList";
 
 function App() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-    <h1 className="font-bold text-6xl underline bg-amber-400 px-4 py-2 rounded-lg shadow-lg">
-      Hello world!
-    </h1>
+    <div className="">
+   
+    <TripsList/>
+    <Footer/>
   </div>
   );
 }
