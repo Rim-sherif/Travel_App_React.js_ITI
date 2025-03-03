@@ -25,13 +25,33 @@ const TripsList = () => {
       price: 65,
       currency: '€'
     },
+    {
+      id: 3,
+      imageUrl: img2,
+      title: 'Colosseum Underground Experience',
+      duration: '3 hours',
+      rating: 4.9,
+      reviewCount: 178,
+      price: 65,
+      currency: '€'
+    },
+    {
+      id: 4,
+      imageUrl: img2,
+      title: 'Colosseum Underground Experience',
+      duration: '3 hours',
+      rating: 4.9,
+      reviewCount: 178,
+      price: 65,
+      currency: '€'
+    },
 
   ];
 
   return (
-    <div className="container max-w-4/5 mx-auto p-8">
+    <div className="container md:max-w-4/5 mx-auto md:p-8 p-2">
       <h2 className="text-3xl font-bold mb-8">Popular Trips</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {trips.map(trip => (
           <TripCard
             key={trip.id}
