@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat UI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <div class="top-search">
+      <input type="text" placeholder="Search...">
+    </div>
+  </header>
+  <div class="chat-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Conversations</h2>
+        <button class="new-chat-btn" id="newChatBtn">+</button>
+      </div>
+      <div class="conversation-list" id="conversationList">
+        <!-- Dynamic conversation list -->
+      </div>
+    </aside>
+    <main class="chat-area">
+      <div class="chat-header" id="chatHeader">
+        <!-- Dynamic chat header -->
+      </div>
+      <div class="messages" id="messageContainer">
+        <!-- Dynamic messages -->
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type your message...">
+        <button class="send-btn" id="sendBtn">Send</button>
+      </div>
+    </main>
+  </div>
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <div class="popup-header">
+        <h3>Start New Conversation</h3>
+        <span class="close-btn" id="closeBtn">&times;</span>
+      </div>
+      <div class="popup-content">
+        <label for="searchUser">Search for a user:</label>
+        <input type="text" id="searchUser" placeholder="Type a user name...">
+        <ul class="search-results" id="searchResults"></ul>
+      </div>
+      <div class="popup-footer">
+        <button class="start-chat-btn" id="startChatBtn">Start Conversation</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
