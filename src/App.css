@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+
+.heroImage{
+    background-image: linear-gradient(268deg,#0c182f00 34.23%,#0c182f99 97.86%),url(./assets/heroSection.webp);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90vh;
+}
+.text_travel{
+    line-height: 1.1;
+}
+
+/* @media(max-width: 991px){
+
+} */
