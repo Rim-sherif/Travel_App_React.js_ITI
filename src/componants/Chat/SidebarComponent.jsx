@@ -1,3 +1,4 @@
+// SidebarComponent.jsx
 import React from "react";
 
 const SidebarComponent = ({
@@ -5,10 +6,11 @@ const SidebarComponent = ({
   currentConversation,
   handleConversationClick,
   setShowPopup,
-  getConversationName,
+  getConversation,
 }) => {
   return (
     <aside className="w-full sm:w-80 border-r border-gray-300 flex flex-col bg-white">
+      {/* رأس الشريط الجانبي */}
       <div className="flex items-center justify-between p-4 bg-gray-50">
         <h2 className="text-lg font-semibold text-gray-800">Conversations</h2>
         <button
@@ -18,6 +20,7 @@ const SidebarComponent = ({
           +
         </button>
       </div>
+      {/* قائمة المحادثات */}
       <div className="flex-1 overflow-y-auto">
         {conversations.map((convo) => (
           <div
@@ -30,13 +33,13 @@ const SidebarComponent = ({
             }`}
           >
             <img
-              src="avatar.png"
+              src={getConversation(convo).image || "avatar.png"}
               alt="Avatar"
               className="w-10 h-10 rounded-full mr-3"
             />
             <div>
               <div className="font-semibold text-gray-800">
-                {getConversationName(convo)}
+                {getConversation(convo).name}
               </div>
               <div className="text-sm text-gray-600">
                 {convo.lastMessage ? convo.lastMessage.content : ""}

@@ -2,8 +2,6 @@ import "./App.css";
 import Footer from "./componants/Footer/Footer";
 import TripsList from "./componants/Triplist/TripList";
 import Video from "./componants/Video/Video";
-// import Chat from './componants/Chat/Chat';
-// import ChatPage from "./componants/Chat/Chat";
 
 function App() {
   return (
@@ -11,8 +9,6 @@ function App() {
       <TripsList/>
     <Video/>
     <Footer/>
-
-      {/* <ChatPage/> */}
     </div>
   );
 }

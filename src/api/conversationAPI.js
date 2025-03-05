@@ -18,5 +18,21 @@ console.log(conversations);
 
 
 
+export const CreateConversation = async(receiverId , token)=>{
+const createUrl = `http://localhost:5000/api/v1/conversations?receiverId=${receiverId}`
+
+const response = await fetch(createUrl, {
+  method:"POST",
+  headers: {
+    Authorization: "Bearer " + token,
+    "Content-Type": "application/json"
+  }
+});
+
+ const data = await response.json();
+
+ return data.conversation
+}
+
 
 
