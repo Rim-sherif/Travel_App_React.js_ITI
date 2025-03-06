@@ -6,6 +6,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { UserContext } from "../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDataThunk } from "../../redux/reducers/userSlice";
 
 const baseUrl = "http://localhost:3000/api/v1";
 
@@ -13,6 +15,8 @@ export default function Account() {
   const {userToken , setUserToken} = useContext(UserContext);
   const [data , setData] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector(store=>store.user);
 
   const initialValues = {
     username: "",
@@ -33,29 +37,22 @@ export default function Account() {
       onSubmit: saveData,
   });
 
-
-  async function getUserData() {
-    try {
-      if(userToken){
-        const {data}  = await axios.get(`${baseUrl}/profile/data` , {
-          headers: {
-              authorization: `Bearer ${userToken}`
-          }
-        });
-        setData(data.data)
-        formik.setValues({
-          username: data.data.name,
-          phone: data.data.phone
-        })
-      }
-    } catch (err) {
-      notify(err?.response?.data?.message, "error");
+  useEffect(() => {
+    if(user){
+      setData(user.data);
+      formik.setValues({
+        username: user.data?.name,
+        phone: user.data?.phone
+      })
     }
-  }
+  }, [user]);
 
-  useEffect(()=>{
-    getUserData();
-  },[userToken])
+  useEffect(() => {
+      if(userToken){
+        dispatch(getUserDataThunk(userToken));
+      }
+    }, [userToken]);
+
 
     async function saveData(values){
         try{
@@ -64,10 +61,11 @@ export default function Account() {
                     authorization: `Bearer ${userToken}`
                 }
             })
+            
             notify(data.status, "success");
-        }   
+            dispatch(getUserDataThunk(userToken));
+          }   
         catch(err){
-            console.log(err);
             notify(err.message, "error");
         }
     }
@@ -84,8 +82,6 @@ export default function Account() {
         navigate("/login")
       }
       catch(err){
-        console.log(err);
-        
         notify(err.message, "error");
       }
     }
@@ -128,7 +124,7 @@ export default function Account() {
               type="email"
               name="email"
               disabled
-              value={data.email}
+              value={data?.email}
               className="w-full border-2 text-sm pt-6 border-gray-300 font-medium cursor-not-allowed text-gray-900 bg-[#EBEEF1] outline-0 px-4 pb-3 rounded-xl"
               placeholder="Email"
             />

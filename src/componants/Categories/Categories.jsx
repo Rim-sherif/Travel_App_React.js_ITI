@@ -9,7 +9,6 @@ export default function Categories() {
     const [category, setCategory] = useState("culture");
     const dispatch = useDispatch();
     const {filteredTrips} = useSelector(store=>store.categoryTrips);
-    console.log(filteredTrips);
     
     const categories = [
         { id: 1, icon: "fa-solid fa-monument", text: "Culture" },
