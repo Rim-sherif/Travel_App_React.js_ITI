@@ -39,6 +39,8 @@ export default function Profile() {
   function logoutFun(){
     setUserToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    
     navigate("/login");
   }
   
