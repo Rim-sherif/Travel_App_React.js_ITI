@@ -7,7 +7,7 @@ export default function UserContextProvider({ children }) {
   const [userToken, setUserToken] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("userToken");
+    const token = localStorage.getItem("token");
     if (token) {
       setUserToken(token);
     }

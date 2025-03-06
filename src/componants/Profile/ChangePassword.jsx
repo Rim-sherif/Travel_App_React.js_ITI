@@ -2,11 +2,15 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { notify } from "../Toast/Toast";
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 const baseUrl = "http://localhost:3000/api/v1";
-const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzhjZjhlMzU2NWZhZWNjYmNiZWFiNiIsImlzTG9nZ2VkSW4iOnRydWUsImlhdCI6MTc0MTIxNzUyMSwiZXhwIjoxNzUxNTg1NTIxfQ.lh7sfHPjXVQDbmH-e09f3_4ZbLGVXqVv7npoFvVvk20";
 
 export default function ChangePassword() {
+  const {userToken} = useContext(UserContext);
+  
+  
   const initialValues = {
     currentPassword: "",
     newPassword: "",
@@ -14,26 +18,28 @@ export default function ChangePassword() {
   const validationSchema = Yup.object({
     currentPassword: Yup.string()
       .matches(
-        new RegExp("^(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{|/~`-])(?=.*[0-9]).{6,}$"),
+        new RegExp("^(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{|/~`-])(?=.*[0-9]).{8,}$"),
         "password must have at least one uppercase, one digit and one special character"
       )
       .required("Old password is required"),
     newPassword: Yup.string()
       .matches(
-        new RegExp("^(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{|/~`-])(?=.*[0-9]).{6,}$"),
+        new RegExp("^(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{|/~`-])(?=.*[0-9]).{8,}$"),
         "password must have at least one uppercase, one digit and one special character"
       )
       .required("New password is required"),
   });
 
   async function sendPassword(values) {
+    console.log(userToken);
+    
     try {
       const {data} = await axios.patch(
         `${baseUrl}/profile/changePass`,
         values,
         {
           headers: {
-            authorization: token,
+            authorization: `Bearer ${userToken}`
           },
         }
       );

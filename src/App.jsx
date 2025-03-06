@@ -14,6 +14,7 @@ import ChangePassword from "./componants/Profile/ChangePassword";
 import { Toaster } from "react-hot-toast";
 import Register from "./componants/Register/Register";
 import Login from "./componants/Login/Login";
+import ProtectedRoute from "./componants/ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (
@@ -24,9 +25,9 @@ function App() {
           <Route index path="/" element={<Home />}/>
           <Route path="/search" element={<Search />}/>
           <Route path="/wishlist" element={<Wishlist/>}/>
-          <Route path="/profile" element={<Profile/>}>
-            <Route index path="account" element={<Account />} />
-            <Route path="changePassword" element={<ChangePassword />} />
+          <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}>
+            <Route path="account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+            <Route path="changePassword" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
           </Route>
           <Route path="/support" element={<Support/>}/>
           <Route path="/register" element={<Register/>}/>

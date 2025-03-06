@@ -7,9 +7,9 @@ export default function Support() {
         <div className="w-[80%] mx-auto my-20">
             <h2 className="text-center text-3xl font-bold mb-2.5">Welcome to the Help Center</h2>
             
-            <h3 className="font-semibold mt-8 mb-2 text-lg text-blue-500">How to plan your trip</h3>
             
             <div className="w-[50%] mx-auto">
+            <h3 className="font-semibold mt-8 mb-2 text-lg text-blue-500">How to plan your trip</h3>
                 <p className="mb-3">
                 To help you plan and make the most of your next trip, we are pleased to provide you with some general destination tips and recommendations such as:
                 </p>
