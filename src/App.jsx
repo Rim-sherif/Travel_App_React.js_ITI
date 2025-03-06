@@ -9,6 +9,9 @@ import Home from "./componants/Home/Home";
 import Support from "./componants/Support/Support";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store";
+import Account from "./componants/Profile/Account";
+import ChangePassword from "./componants/Profile/ChangePassword";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -19,11 +22,15 @@ function App() {
           <Route index path="/" element={<Home />}/>
           <Route path="/search" element={<Search />}/>
           <Route path="/wishlist" element={<Wishlist/>}/>
-          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/profile" element={<Profile/>}>
+            <Route index path="account" element={<Account />} />
+            <Route path="changePassword" element={<ChangePassword />} />
+          </Route>
           <Route path="/support" element={<Support/>}/>
           <Route path="*" element={<Notfound/>}/>
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </Provider>
   );
 }
