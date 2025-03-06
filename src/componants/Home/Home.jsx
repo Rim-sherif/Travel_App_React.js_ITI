@@ -1,5 +1,17 @@
+import Categories from "../Categories/Categories";
+import Footer from "../Footer/Footer";
+import HeroSection from "../HeroSection/HeroSection";
+import TripsList from "../Triplist/TripList";
+import Video from "../Video/Video";
+
 export default function Home(){
     return (
-        <h1>Welcome to the Home Page</h1>
+        <div>
+            <HeroSection />
+            <Categories />
+            <TripsList/>
+            <Video/>
+            <Footer/> 
+        </div>
     )
 }
