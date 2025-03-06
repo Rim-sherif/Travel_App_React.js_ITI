@@ -12,6 +12,8 @@ import { store } from "./redux/store/store";
 import Account from "./componants/Profile/Account";
 import ChangePassword from "./componants/Profile/ChangePassword";
 import { Toaster } from "react-hot-toast";
+import Register from "./componants/Register/Register";
+import Login from "./componants/Login/Login";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route path="changePassword" element={<ChangePassword />} />
           </Route>
           <Route path="/support" element={<Support/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>}/>
           <Route path="*" element={<Notfound/>}/>
         </Routes>
       </BrowserRouter>

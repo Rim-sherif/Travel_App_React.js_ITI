@@ -59,7 +59,7 @@ export default function Navbar() {
                     {profileShow ? 
                         <div style={{boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"}} className="bg-white absolute top-16 w-80 text-start right-0 rounded-xl p-5">
                             <h4 className="font-semibold mb-5 text-xl">Profile</h4>
-                            <Link to="" className="text-[14px] block mb-3 font-medium"><i className="fa-regular fa-circle-right me-1"></i> Log in or Sign up</Link>
+                            <Link to="/login" className="text-[14px] block mb-3 font-medium"><i className="fa-regular fa-circle-right me-1"></i> Log in or Sign up</Link>
                             <hr className="text-zinc-200"/>
                             <Link to="/support" className="text-[14px] block my-3 font-medium">
                             <i className="fa-regular fa-circle-question me-1"></i> Support</Link>

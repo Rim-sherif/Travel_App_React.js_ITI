@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 export default function Notfound() {
   return (
     <div>
-        <img className='w-[50%] mx-auto' src={notFoundImg} alt="" />
+        <img className='w-[35%] mx-auto' src={notFoundImg} alt="" />
         <Footer />
     </div>
   )
