@@ -10,6 +10,8 @@ import Search from "./componants/Search/Search";
 import Notfound from "./componants/Notfound/Notfound";
 import Home from "./componants/Home/Home";
 import Support from "./componants/Support/Support";
+import Register from "./componants/Register/Register";
+import Login from "./componants/Login/Login";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/wishlist" element={<Wishlist/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/support" element={<Support/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>}/>
           <Route path="*" element={<Notfound/>}/>
         </Routes>
         {/* <TripsList/>
