@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 import "./App.css";
 import Navbar from "./componants/Navbar/Navbar";
 import Wishlist from "./componants/Wishlist/Wishlist";
@@ -15,6 +15,8 @@ import { Toaster } from "react-hot-toast";
 import Register from "./componants/Register/Register";
 import Login from "./componants/Login/Login";
 import ProtectedRoute from "./componants/ProtectedRoute/ProtectedRoute";
+import TripDetailsPage from "./componants/SingleTrip/Singletrip";
+
 
 function App() {
   const location = window.location;
@@ -29,6 +31,7 @@ function App() {
             <Route index path="/" element={<Home />}/>
             <Route path="/search" element={<Search />}/>
             <Route path="/wishlist" element={<Wishlist/>}/>
+            <Route path="/trips/:id" element={<TripDetailsPage />} />
             <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}>
               <Route path="account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
               <Route path="changePassword" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />

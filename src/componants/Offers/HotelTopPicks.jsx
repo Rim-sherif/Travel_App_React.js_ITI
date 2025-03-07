@@ -1,4 +1,4 @@
-import hotel from '../../../public/bed.jpg';
+import hotel from '/bed.jpg';
 
 const HotelTopPicks = () => {
   return (
@@ -12,9 +12,8 @@ const HotelTopPicks = () => {
         <button className="bg-white text-blue-700 border-2 border-white px-8 py-3 rounded-full shadow-lg hover:bg-blue-100 transition">
           Explore now
         </button>
-        <p className="mt-4 text-sm opacity-80">*T&Cs apply. Subject to availability.</p>
+        <p className="mt-4 text-sm opacity-80">* T&Cs apply. Subject to availability.</p>
       </div>
-
       <div className="absolute top-6 left-6 text-white text-xl font-semibold z-20">
         Trip<span className="text-blue-400">.com</span>
       </div>

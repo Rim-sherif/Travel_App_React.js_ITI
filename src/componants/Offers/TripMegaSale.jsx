@@ -1,5 +1,5 @@
-import plane from "../../../public/plane.webp";
-import helal from "../../../public/helal.png";
+import plane from "/plane.webp";
+import helal from "/helal.png";
 
 const TripMegaSale = () => {
   return (

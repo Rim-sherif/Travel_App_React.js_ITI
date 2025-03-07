@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
-import img1 from "../../../public/ws1.jpg";
-import img2 from "../../../public/ws2.jpg";
-import img3 from "../../../public/ws3.jpg";
+import img1 from "/ws1.jpg";
+import img2 from "/ws2.jpg";
+import img3 from "/ws3.jpg";
 
 const Wishlist = () => {
   const [open, setOpen] = useState(false);
