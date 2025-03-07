@@ -7,6 +7,8 @@ import Footer from "../Footer/Footer";
 import { notify } from "../Toast/Toast";
 import axios from "axios";
 import { UserContext } from "../../Context/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDataThunk } from "../../redux/reducers/userSlice";
 
 const baseUrl = "http://localhost:3000/api/v1";
 
@@ -15,32 +17,45 @@ export default function Profile() {
   const {pathname} = useLocation();
   const {userToken , setUserToken} = useContext(UserContext);
   const [dataInfo , setDataInfo] = useState({});
+  const dispatch = useDispatch();
+  const user = useSelector(store=>store.user);
 
-  async function getUserData() {
-    try {
-      if(userToken){
-        const {data}  = await axios.get(`${baseUrl}/profile/data` , {
-          headers: {
-            authorization: `Bearer ${userToken}`
-          }
-        });
-        setDataInfo(data.data)
-      }
-    } catch (err) {
-      notify(err?.response?.data?.message, "error");
-    }
-  }
+
+  // async function getUserData() {
+  //   try {
+  //     if(userToken){
+  //       const {data}  = await axios.get(`${baseUrl}/profile/data` , {
+  //         headers: {
+  //           authorization: `Bearer ${userToken}`
+  //         }
+  //       });
+  //       setDataInfo(data.data)
+  //     }
+  //   } catch (err) {
+  //     notify(err?.response?.data?.message, "error");
+  //   }
+  // }
 
   function logoutFun(){
     setUserToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    
     navigate("/login");
   }
   
   useEffect(()=>{
     (pathname.includes("/profile") ? navigate("/profile/account"):"");
-    getUserData();
+    if(userToken){
+      dispatch(getUserDataThunk(userToken));
+    }
   },[userToken])
+
+   useEffect(() => {
+      if(user){
+        setDataInfo(user.data);
+      }
+    }, [user]);
 
   return (
     <>

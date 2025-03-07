@@ -4,6 +4,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { notify } from "../Toast/Toast";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDataThunk } from "../../redux/reducers/userSlice";
 
 const baseUrl = "http://localhost:3000/api/v1";
 
@@ -13,28 +15,28 @@ export default function Navbar() {
   const {userToken} = useContext(UserContext);
   const [data , setData] = useState({});
   const profileDiv = useRef(null);
-    
+  const dispatch = useDispatch();
+  const user = useSelector(store=>store.user);
+  
+
+  useEffect(() => {
+    if(userToken){
+      dispatch(getUserDataThunk(userToken));
+    }
+  }, [userToken]);
+
+  useEffect(() => {
+    if(user){
+      setData(user.data);
+    }
+  }, [user]);
+
   function handleSearchShow() {
     setSearchShow(!searchShow);
   }
 
   function handleProfilePop() {
     setProfileShow(!profileShow);
-  }
-
-  async function getUserData() {
-    try {
-      if(userToken){
-        const {data}  = await axios.get(`${baseUrl}/profile/data` , {
-          headers: {
-            authorization: `Bearer ${userToken}`
-          }
-        });        
-        setData(data.data)
-      }
-    } catch (err) {
-      notify(err?.response?.data?.message, "error");
-    }
   }
 
   function handleClickOutside(event) {
@@ -44,10 +46,6 @@ export default function Navbar() {
   }
 
   document.addEventListener("click", handleClickOutside);
-  
-  useEffect(()=>{
-    getUserData();
-  },[userToken])
 
   return (
     <div className="py-3 border-b border-gray-100">
@@ -70,7 +68,6 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-
         <div className="flex justify-between items-center gap-10">
           <div
             onClick={handleSearchShow}
@@ -105,7 +102,7 @@ export default function Navbar() {
             <div onClick={handleProfilePop} ref={profileDiv} className="cursor-pointer">
               <i className="fa-regular fa-user text-[19px]"></i>
               <section className="text-[13px] font-semibold">
-                {Object.keys(data).length > 0 ? data?.name?.split(" ")[0] : "Profile"}
+                {data && Object.keys(data).length > 0 ? data?.name?.split(" ")[0] : "Profile"}
               </section>
             </div>
             {profileShow ? (
