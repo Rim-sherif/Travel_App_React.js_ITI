@@ -43,6 +43,7 @@ const TripsList = () => {
               rating={4.5}
               reviewCount={trip.reviews.length}
               price={trip.price}
+              tripId={trip._id}
               currency="€"
             /></Link>
           );

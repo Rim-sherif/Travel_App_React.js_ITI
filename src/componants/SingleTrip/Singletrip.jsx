@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -7,11 +7,76 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const fetchTrip = async (id) => {
   const { data } = await axios.get(`http://localhost:3000/api/v1/trips/${id}`);
+  console.log(data.trip);
   return data.trip;
 };
+const token = localStorage.getItem("token");
 
 const TripDetailsPage = () => {
   const { id } = useParams();
+  const [added, setAdded] = useState(false);
+
+  const checkWishlistStatus = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/v1/trips/wishlist/status/${id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Wishlist Status Response:", data);
+        setAdded(data.inWishlist);
+      }
+    } catch (error) {
+      console.error("Error checking wishlist status:", error);
+    }
+  };
+
+  useEffect(() => {
+    checkWishlistStatus(id);
+  }, [id]);
+
+  const addToWishlist = async (id) => {
+    await fetch(`http://localhost:3000/api/v1/trips/wishlist/add/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    setAdded(true);
+  };
+  const removeFromWishlist = async (id) => {
+    await fetch(`http://localhost:3000/api/v1/trips/wishlist/remove/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    setAdded(false);
+  };
+
+  const toggleClick = async () => {
+    try {
+      if (!added) {
+        await addToWishlist(id);
+      } else {
+        await removeFromWishlist(id);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["trip", id],
@@ -72,8 +137,15 @@ const TripDetailsPage = () => {
               </span>
             </div>
             <div>
-              <span className=" items-center cursor-pointer hover:text-gray-900">
-                <i className="fa-regular fa-heart text-[19px]"></i>{" "}
+              <span
+                className=" items-center cursor-pointer hover:text-gray-900"
+                onClick={toggleClick}
+              >
+                <i
+                  className={`fa-heart text-[19px] ${
+                    added ? "fa-solid" : "fa-regular"
+                  }`}
+                ></i>
                 <span className="ml-2">Add to Wishlist</span>
               </span>
               <span className=" items-center cursor-pointer hover:text-gray-900 ml-4">
