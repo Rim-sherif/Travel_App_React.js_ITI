@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDataThunk } from "../../redux/reducers/userSlice";
 
-const baseUrl = "http://localhost:3000/api/v1";
+const baseUrl = "http://localhost:5000/api/v1";
 
 export default function Account() {
   const {userToken , setUserToken} = useContext(UserContext);

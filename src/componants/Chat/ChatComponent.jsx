@@ -23,7 +23,7 @@ const ChatComponent = ({
         {currentConversation && (
           <>
             <img
-              src={getConversation(currentConversation).image || "avatar.png"}
+              src={getConversation(currentConversation).image || defultImg}
               alt="Avatar"
               className="w-10 h-10 rounded-full mr-3"
             />
@@ -41,7 +41,7 @@ const ChatComponent = ({
             className={`flex mb-4 ${msg.sender === "me" ? "justify-end" : "justify-start"}`}
           >
             <div className={`flex items-start ${msg.sender === "me" ? "flex-row-reverse" : ""}`}>
-              <img src={msg.avatar || "avatar.png"} alt="Avatar" className="w-8 h-8 rounded-full mx-2" />
+              <img src={msg.avatar || defultImg} alt="Avatar" className="w-8 h-8 rounded-full mx-2" />
               <div className={`p-2 rounded-lg ${msg.sender === "me" ? "bg-blue-50" : "bg-gray-200"}`}>
                 <p className="text-sm">{msg.text}</p>
                 <span className="text-xs text-gray-600">{msg.time}</span>

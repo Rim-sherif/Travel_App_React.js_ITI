@@ -10,7 +10,7 @@ export default function CategoryCard({category}) {
     const { data: trips, isLoading, error } = useQuery({
       queryKey: ['trips'],
       queryFn: async () => {
-        const response = await fetch('http://localhost:3000/api/v1/trips');
+        const response = await fetch('http://localhost:5000/api/v1/trips');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

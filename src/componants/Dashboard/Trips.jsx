@@ -21,7 +21,7 @@ export default function Trips() {
 
   async function fetchCategories() {
     try {
-      let { data } = await axios.get("http://localhost:3000/api/v1/category/all");
+      let { data } = await axios.get("http://localhost:5000/api/v1/category/all");
       setCategories(data.allCategories);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -63,7 +63,7 @@ export default function Trips() {
       };
   
       let { data } = await axios.post(
-        `http://localhost:3000/api/v1/trips/${selectedCategory}`,
+        `http://localhost:5000/api/v1/trips/${selectedCategory}`,
         formData,
         { headers }
       );

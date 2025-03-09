@@ -33,7 +33,7 @@ const TripCard = ({
   async function addToWishlist() {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/wishlist/${tripId}`
+        `http://localhost:5000/api/v1/wishlist/${tripId}`
       );
     } catch (err) {
       console.log(err);
@@ -42,7 +42,7 @@ const TripCard = ({
   async function removeFromWishlist() {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/wishlist/${tripId}`
+        `http://localhost:5000/api/v1/wishlist/${tripId}`
       );
     } catch (err) {
       console.log(err);

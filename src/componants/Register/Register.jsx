@@ -15,7 +15,7 @@ export default function Register() {
       setApiError(null);
       setLoading(true);
       let { data } = await axios.post(
-        `http://localhost:3000/api/v1/auth/signup`,
+        `http://localhost:5000/api/v1/auth/signup`,
         values
       );
       if (data.message === "Success") {

@@ -23,6 +23,8 @@ import Trips from "./componants/Dashboard/Trips";
 import Category from "./componants/Dashboard/Category";
 import Orders from "./componants/Dashboard/Orders";
 import Footer from "./componants/Footer/Footer";
+import ChatIcon from "./componants/Chat/ChatIcon";
+import ChatPage from "./componants/chat/chat";
 
 function App() {
   const location = window.location;
@@ -41,6 +43,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/trips/:id" element={<TripDetailsPage />} />
+            <Route path="/chat" element={<ChatPage />} />
             <Route
               path="/profile"
               element={
@@ -78,6 +81,7 @@ function App() {
             <Route path="*" element={<Notfound />} />
           </Routes>
           {!footer && <Footer />}
+          <ChatIcon />
         </BrowserRouter>
         <Toaster />
       </Provider>
