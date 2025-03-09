@@ -22,6 +22,7 @@ import Trips from "./componants/Dashboard/Trips";
 import Category from "./componants/Dashboard/Category";
 import Orders from "./componants/Dashboard/Orders";
 import Footer from "./componants/Footer/Footer";
+import About from "./componants/About/About";
 
 function App() {
   const location = window.location;
@@ -74,6 +75,7 @@ function App() {
                 <Route path="category" element={<Category />} />
                 <Route path="orders" element={<Orders />} />
             </Route>
+            <Route path="/about" element={<About />} />
             <Route path="/support" element={<Support />} />
             <Route path="/register" element={<Register />} /> 
             <Route path="/login" element={<Login />} />

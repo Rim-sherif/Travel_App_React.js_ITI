@@ -11,10 +11,15 @@ export default function HeroSection() {
                 Goreme Hot Air Balloon Flight at Sunrise
             </section>
             
-            <Link to="/" className="text-white mt-6 block">
-                Learn more <i className="fa-solid fa-angle-right align-middle"></i>
-            </Link>
+            <Link
+          to="/about"
+          className="text-white mt-6 block text-lg font-medium transform transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400"
+        >
+          Learn more
+          <i className="fa-solid fa-angle-right align-middle ml-2"></i>
+        </Link>
         </div>
     </div>
   )
 }
+
