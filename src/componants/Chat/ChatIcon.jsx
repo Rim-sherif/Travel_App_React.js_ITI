@@ -1,10 +1,12 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import imgIcon from '/chat.png'
+import imgIcon from '/chat.png'; 
+
 const ChatIcon = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Hide the chat icon when on the Chat page
   if (location.pathname === '/Chat') {
     return null;
   }
