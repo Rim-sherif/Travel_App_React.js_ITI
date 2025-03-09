@@ -2,6 +2,7 @@ import React from 'react'
 import TripCard from '../../UI/TripCard'
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 export default function CategoryCard({category}) {
     const {filteredTrips} = useSelector(store=>store.categoryTrips);
@@ -32,9 +33,8 @@ export default function CategoryCard({category}) {
     <div className="container md:max-w-5/6 mx-auto md:p-8 p-2">
       <h2 className="text-3xl font-bold mb-8">Unforgettable {category} Experiences</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {trips.map(trip => ( trip.categoryId.name.toLowerCase() == category.toLowerCase() ?
+        {trips.filter((trip) => ( trip.categoryId.name.toLowerCase() == category.toLowerCase())).slice(0,4).map((trip)=> <Link to={`/trips/${trip._id}`} key={trip._id}>
           <TripCard
-            key={trip.id}
             imageUrl={trip.images[0]}
             title={trip.title}
             duration={trip.duration}
@@ -42,8 +42,8 @@ export default function CategoryCard({category}) {
             reviewCount={trip.reviewCount}
             price={trip.price}
             currency={trip.currency}
-          /> : ""
-        ))}
+          /></Link>)
+        }
       </div>
     </div>
   )
