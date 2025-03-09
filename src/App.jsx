@@ -6,7 +6,7 @@ import Profile from "./componants/Profile/Profile";
 import Search from "./componants/Search/Search";
 import Notfound from "./componants/Notfound/Notfound";
 import Home from "./componants/Home/Home";
-import Support from "./componants/Support/Support";
+import Support from "./componants/Support/Support";   
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store";
 import Account from "./componants/Profile/Account";
@@ -28,13 +28,14 @@ import CancelPayment from "./componants/Cancel/CancelPayment";
 function App() {
   const location = window.location;
   const navbar =
-    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips"
+    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips" || location.pathname =="/Chat"
     || location.pathname == "/dashboard/category" || location.pathname == "/dashboard/orders";
     
   const footer =
-    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips" 
+    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips" || location.pathname =="/Chat"
     || location.pathname == "/dashboard/category" || location.pathname == "/dashboard/orders";
 
+    const chat = location.pathname == "/Chat" ||location.pathname == "/login" || location.pathname == "/register"
   return (
     <>
       <Provider store={store}>
@@ -45,7 +46,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/trips/:id" element={<TripDetailsPage />} />
-            <Route path="/chat" element={<ChatPage />} />
+            <Route path="/Chat" element={<ChatPage />} />
             <Route
               path="/profile"
               element={
@@ -89,8 +90,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
+          {!chat && <ChatIcon />}
           {!footer && <Footer />}
-          <ChatIcon />
         </BrowserRouter>
         <Toaster />
       </Provider>

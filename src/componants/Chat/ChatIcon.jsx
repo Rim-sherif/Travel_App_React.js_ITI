@@ -5,7 +5,7 @@ const ChatIcon = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  if (location.pathname === '/chat') {
+  if (location.pathname === '/Chat') {
     return null;
   }
 
