@@ -21,7 +21,9 @@ export default function Trips() {
 
   async function fetchCategories() {
     try {
-      let { data } = await axios.get("http://localhost:3000/api/v1/category/all");
+      let { data } = await axios.get(
+        "http://localhost:3000/api/v1/category/all"
+      );
       setCategories(data.allCategories);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -36,19 +38,19 @@ export default function Trips() {
   async function addTrip(tripData) {
     try {
       console.log(tripData.startPoint);
-      
+
       setApiError(null);
       setLoading(true);
 
       const formData = new FormData();
-  
+
       for (const key in tripData) {
         if (key === "startPoint") {
           tripData.startPoint.forEach((point) => {
             formData.append(`${key}[]`, point);
           });
         } else if (tripData[key]) {
-          formData.append(key, tripData[key]); 
+          formData.append(key, tripData[key]);
         }
       }
 
@@ -57,24 +59,25 @@ export default function Trips() {
           formData.append("images", image);
         });
       }
-  
+
       const headers = {
         Authorization: `Bearer ${userToken}`,
       };
-  
+
       let { data } = await axios.post(
         `http://localhost:3000/api/v1/trips/${selectedCategory}`,
         formData,
         { headers }
       );
-  
+
       if (data.message === "Success") {
         formik.resetForm();
         toast.success("Trip added successfully!");
         setTimeout(() => navigate("/dashboard"), 3000);
       }
     } catch (error) {
-      const errorMessage = error.response?.data?.message || "Something went wrong";
+      const errorMessage =
+        error.response?.data?.message || "Something went wrong";
       setApiError(errorMessage);
       toast.error("Failed to add trip. Please try again.");
     } finally {
@@ -110,22 +113,29 @@ export default function Trips() {
         .nullable()
         .when("departureDate", (departureDate, schema) =>
           departureDate
-            ? schema.min(departureDate, "Return date must be after departure date")
+            ? schema.min(
+                departureDate,
+                "Return date must be after departure date"
+              )
             : schema
         ),
-      startPoint: Yup.array().of(Yup.string().required("Start point is required")),
+      startPoint: Yup.array().of(
+        Yup.string().required("Start point is required")
+      ),
       destination: Yup.string().required("Destination is required"),
       images: Yup.array().min(1, "At least one image is required"),
       availableSeats: Yup.number()
         .min(1, "At least one seat is required")
         .required("Available seats are required"),
-    }),    
+    }),
     onSubmit: addTrip,
   });
 
   return (
     <div className="max-w-xl mx-auto p-8 bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-semibold mb-6 text-center">Add a New Trip</h2>
+      <h2 className="text-3xl font-semibold mb-6 text-center">
+        Add a New Trip
+      </h2>
 
       {apiError && <p className="text-red-500 text-center">{apiError}</p>}
 
@@ -139,7 +149,14 @@ export default function Trips() {
           <p className="text-red-500 text-xs">{formik.errors.title}</p>
         )}
 
+        <label
+          htmlFor="description"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          Trip Description
+        </label>
         <textarea
+          id="description"
           {...formik.getFieldProps("description")}
           placeholder="Trip Description"
           className="w-full border p-3 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -149,7 +166,7 @@ export default function Trips() {
         )}
 
         <InputField
-          label="Destination"
+          label="Trip Destination"
           placeholder="Enter the trip destination"
           {...formik.getFieldProps("destination")}
         />
@@ -157,26 +174,28 @@ export default function Trips() {
           <p className="text-red-500 text-xs">{formik.errors.destination}</p>
         )}
 
-<StartPoints
-  startPoint={formik.values.startPoint}
-  setStartPoint={(points) => formik.setFieldValue("startPoint", points)}
-  error={
-    formik.errors.startPoint &&
-    formik.touched.startPoint &&
-    formik.errors.startPoint
-  }
-/>
-{formik.touched.startPoint && formik.errors.startPoint && (
-  <p className="text-red-500 text-xs">{formik.errors.startPoint}</p>
-)}
-        
+        <StartPoints
+          startPoint={formik.values.startPoint}
+          setStartPoint={(points) => formik.setFieldValue("startPoint", points)}
+          error={
+            formik.errors.startPoint &&
+            formik.touched.startPoint &&
+            formik.errors.startPoint
+          }
+        />
+        {formik.touched.startPoint && formik.errors.startPoint && (
+          <p className="text-red-500 text-xs">{formik.errors.startPoint}</p>
+        )}
+
         <CategorySelect
           categories={categories}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
         {formik.touched.selectedCategory && formik.errors.selectedCategory && (
-          <p className="text-red-500 text-xs">{formik.errors.selectedCategory}</p>
+          <p className="text-red-500 text-xs">
+            {formik.errors.selectedCategory}
+          </p>
         )}
 
         <InputField
@@ -230,7 +249,9 @@ export default function Trips() {
           type="submit"
           disabled={loading}
           className={`w-full py-3 rounded-md ${
-            loading ? "bg-gray-500 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            loading
+              ? "bg-gray-500 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700"
           } text-white`}
         >
           {loading ? "Adding Trip..." : "Add Trip"}
