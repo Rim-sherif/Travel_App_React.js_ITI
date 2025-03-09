@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./componants/Navbar/Navbar";
 import Wishlist from "./componants/Wishlist/Wishlist";
@@ -16,31 +16,64 @@ import Register from "./componants/Register/Register";
 import Login from "./componants/Login/Login";
 import ProtectedRoute from "./componants/ProtectedRoute/ProtectedRoute";
 import TripDetailsPage from "./componants/SingleTrip/Singletrip";
-
+import DashboardLayout from "./componants/Dashboard/DashboardLayout";
+import { Children } from "react";
+import Overview from "./componants/Dashboard/Overview";
+import Users from "./componants/Dashboard/Users";
+import Footer from "./componants/Footer/Footer";
 
 function App() {
   const location = window.location;
-  const navbar = location.pathname == "/login" || location.pathname == "/register";
+  const navbar =
+    location.pathname == "/login" || location.pathname == "/register";
   return (
     <>
-
       <Provider store={store}>
         <BrowserRouter>
           {!navbar && <Navbar />}
           <Routes>
-            <Route index path="/" element={<Home />}/>
-            <Route path="/search" element={<Search />}/>
-            <Route path="/wishlist" element={<Wishlist/>}/>
+            <Route index path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/trips/:id" element={<TripDetailsPage />} />
-            <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}>
-              <Route path="account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
-              <Route path="changePassword" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            >
+              <Route
+                path="account"
+                element={
+                  <ProtectedRoute>
+                    <Account />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="changePassword"
+                element={
+                  <ProtectedRoute>
+                    <ChangePassword />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
-            <Route path="/support" element={<Support/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="*" element={<Notfound/>}/>
+            <Route path="/support" element={<Support />} />
+            <Route path="/register" element={<Register />} />
+       
+              <Route path="/dashboard" element={<DashboardLayout />}>
+                <Route index path="/dashboard" element={<Overview />} />
+                <Route path="overview" element={<Overview />} />
+                <Route path="users" element={<Users />} />
+         
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Notfound />} />
           </Routes>
+          <Footer/>
         </BrowserRouter>
         <Toaster />
       </Provider>

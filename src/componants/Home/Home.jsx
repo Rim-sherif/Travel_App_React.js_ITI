@@ -1,5 +1,4 @@
 import Categories from "../Categories/Categories";
-import Footer from "../Footer/Footer";
 import HeroSection from "../HeroSection/HeroSection";
 import Offers from "../Offers/Offers";
 import TripsList from "../Triplist/TripList";
@@ -13,7 +12,7 @@ export default function Home(){
             <TripsList/>
             <Offers />
             <Video/>
-            <Footer/> 
+         
         </div>
     )
 }

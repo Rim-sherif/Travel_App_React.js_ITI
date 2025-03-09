@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Footer from "../Footer/Footer";
+
 
 export default function Support() {
   return (
@@ -26,7 +26,7 @@ export default function Support() {
                 <Link className="inline-block mt-3 border-2 border-blue-600 text-blue-600 font-bold py-2 px-5 rounded-3xl text-sm" to="mailto:abdulrahman.fawzy25@gmail.com">Contact us</Link>
             </div>
         </div>
-        <Footer />
+     
     </>
   )
 }

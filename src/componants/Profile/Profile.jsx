@@ -3,14 +3,11 @@ import bottomLine from "/Bottom-Line.svg";
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import './profile.css';
-import Footer from "../Footer/Footer";
-import { notify } from "../Toast/Toast";
-import axios from "axios";
 import { UserContext } from "../../Context/UserContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDataThunk } from "../../redux/reducers/userSlice";
 
-const baseUrl = "http://localhost:3000/api/v1";
+
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -92,7 +89,7 @@ export default function Profile() {
         </div>
       
       </div>
-      <Footer />
+    
     </>
   )
 }
