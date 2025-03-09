@@ -21,6 +21,8 @@ import { Children } from "react";
 import Overview from "./componants/Dashboard/Overview";
 import Users from "./componants/Dashboard/Users";
 import Footer from "./componants/Footer/Footer";
+import Booking from "./componants/Booking/Booking";
+import CancelPayment from "./componants/Cancel/CancelPayment";
 
 function App() {
   const location = window.location;
@@ -62,6 +64,9 @@ function App() {
               />
             </Route>
             <Route path="/support" element={<Support />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/cancelPayment" element={<CancelPayment />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/register" element={<Register />} />
        
               <Route path="/dashboard" element={<DashboardLayout />}>
