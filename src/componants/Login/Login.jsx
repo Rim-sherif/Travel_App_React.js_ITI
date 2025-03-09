@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { UserContext } from "../../Context/userContext";
+import { UserContext } from "../../Context/UserContext";
 
 export default function Login() {
   let { setUserToken } = useContext(UserContext);
@@ -22,6 +22,7 @@ export default function Login() {
       if (data.message == "Success") {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId); 
+        localStorage.setItem("userRole", data.userRole); 
         setUserToken(data.token);
         navigate("/");
       }

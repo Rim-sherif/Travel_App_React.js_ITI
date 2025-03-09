@@ -3,7 +3,7 @@ import helal from "/helal.png";
 
 const TripMegaSale = () => {
   return (
-    <div className="bg-[#066185] text-white overflow-hidden m-4">
+    <div className="bg-[#066185] text-white overflow-hidden ">
       <div className="relative p-6 flex flex-col md:flex-row items-center justify-between">
         <img
           className="w-40 md:w-80 mb-4 md:mb-0"

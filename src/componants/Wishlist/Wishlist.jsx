@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import emptyImg from '../../../public/empty-wishlist.webp'
 
 const fetchWishlist = async () => {
   const token = localStorage.getItem("token");
@@ -105,9 +106,10 @@ const Wishlist = () => {
   return (
     <>
       {trips.length === 0 ? (
-        <div className="text-center p-8 text-gray-500">
+        <div className="flex flex-col gap-5 text-center p-8 text-gray-500 content-center items-center">
           <p className="text-xl font-semibold">Your wishlist is empty</p>
           <p className="text-sm">Save activities to your wishlist by clicking on the heart icon.</p>
+          <img src={emptyImg}/>
         </div>
       ) : (
         <>

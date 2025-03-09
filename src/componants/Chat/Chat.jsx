@@ -7,10 +7,11 @@ import { CreateConversation, fetchConversationsAPI } from "../../api/conversatio
 import { fetchUsers } from "../../api/searchUser";
 import { fetchMessagesAPI } from "../../api/messagesAPI.js";
 import { io } from "socket.io-client";
+import defultImg from "/avatar.png"
 
 const currentUserId = localStorage.getItem("userId");
 const token = localStorage.getItem("token");
-const currentUserAvatar = localStorage.getItem("avatar") || "avatar.png";
+const currentUserAvatar = localStorage.getItem("avatar") || defultImg;
 
 const ensureMessages = (convo) => {
   return { ...convo, messages: convo.messages || [] };
@@ -23,13 +24,13 @@ const transformMessage = (message) => {
   } else if (typeof message.sender === "object") {
     senderUser = message.sender;
   } else {
-    senderUser = { _id: message.sender, image: "avatar.png" };
+    senderUser = { _id: message.sender, image: defultImg };
   }
   return {
     sender: senderUser._id === currentUserId ? "me" : "other",
     text: message.content,
     time: new Date(message.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    avatar: senderUser.image || "avatar.png",
+    avatar: senderUser.image || defultImg,
   };
 };
 
@@ -45,7 +46,7 @@ const ChatPage = () => {
   const socketRef = useRef(null);
 
   useEffect(() => {
-    socketRef.current = io("http://localhost:5000", {
+    socketRef.current = io("http://localhost:3000", {
       transports: ["websocket", "polling"],
       path: "/socket.io/",
     });
@@ -214,7 +215,8 @@ const ChatPage = () => {
 
   return (
     <div className="h-screen flex flex-col bg-white text-gray-900 transition-colors duration-300">
-      <TopBarComponent />
+      {/* <TopBarComponent /> */}
+      <Navbar></Navbar>
       <div className="flex flex-1 overflow-hidden">
         <SidebarComponent
           conversations={conversations}
@@ -267,7 +269,7 @@ const ChatPage = () => {
                     }}
                     className="p-2 hover:bg-gray-100 cursor-pointer text-sm flex items-center"
                   >
-                    <img src={user.image || "avatar.png"} alt={user.name} className="w-8 h-8 rounded-full" />
+                    <img src={user.image || defultImg} alt={user.name} className="w-8 h-8 rounded-full" />
                     <div className="ml-2">
                       <h2 className="font-semibold">{user.name}</h2>
                       <p className="text-xs text-gray-600">{user.role}</p>
