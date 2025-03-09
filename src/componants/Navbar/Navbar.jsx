@@ -54,8 +54,11 @@ export default function Navbar() {
   }
 
   const searchBtn = ()=>{
-    console.log(searchVal);
-    navigate(`/search?search=${searchVal}`)
+    if(searchVal != ""){
+      navigate(`/search?search=${searchVal}`)
+    }else{
+      notify( "write value you want please!" , "error")
+    }
   }
 
   return (
@@ -68,6 +71,7 @@ export default function Navbar() {
           <div className="relative w-[500px] hidden lg:block">
             <input
               type="text"
+              onKeyUp={(e)=>e.key === "Enter" ? searchBtn() : ""}
               onChange={searchChangeVal}
               placeholder="Find places and things to do"
               className="py-3 px-11 w-full outline-0 text-[14px] rounded-4xl font-semibold text-gray-600 border border-gray-200"

@@ -216,7 +216,7 @@ const ChatPage = () => {
 
   return (
     <div className="h-screen flex flex-col bg-white text-gray-900 transition-colors duration-300">
-      <Navbar/>
+      {/* <Navbar/> */}
       <div className="flex flex-1 overflow-hidden">
         <SidebarComponent
           conversations={conversations}

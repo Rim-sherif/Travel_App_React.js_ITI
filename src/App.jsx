@@ -24,6 +24,9 @@ import Orders from "./componants/Dashboard/Orders";
 import Footer from "./componants/Footer/Footer";
 import Booking from "./componants/Booking/Booking";
 import CancelPayment from "./componants/Cancel/CancelPayment";
+import AboutUs from "./componants/About/About";
+import ChatIcon from "./componants/Chat/ChatIcon";
+import ChatPage from "./componants/Chat/Chat";
 
 function App() {
   const location = window.location;
@@ -84,7 +87,7 @@ function App() {
                 <Route path="category" element={<Category />} />
                 <Route path="orders" element={<Orders />} />
             </Route>
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/support" element={<Support />} />
             <Route path="/register" element={<Register />} /> 
             <Route path="/login" element={<Login />} />

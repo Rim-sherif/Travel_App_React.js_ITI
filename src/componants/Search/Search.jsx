@@ -11,6 +11,7 @@ export default function Search() {
   const search = searchParams.get("search");
   const [trips , setTrips] = useState([]);
   const [loading , setLoading] = useState(false);
+  const [error , setError] = useState(false);
   const getSearchedTrips = async()=>{
     try{
       setLoading(true);
@@ -18,12 +19,14 @@ export default function Search() {
       console.log(data);
       setTrips(data.data);
       setLoading(false);
+      setError(false);
     }
     catch(err){
       setLoading(false);
-      console.log(err);
+      setError(true);
       if(err?.response?.data?.data){
         notify(err?.response?.data?.data , "error");
+        setTrips([]);
       }else{
         notify(err.message , "error");
       }
@@ -44,6 +47,11 @@ export default function Search() {
       <h2 className='text-2xl font-bold mb-5'>
         Search Result <span className='text-green-500'>({trips ? trips.length:""})</span>
       </h2>
+      {error && 
+          <div>
+            <img src='/detection.png' className='text-center mx-auto w-1/4' alt='search word wrong' />
+          </div>
+        }
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {trips ? trips.map(trip => {
           const startDate = new Date(trip.departureDate);
