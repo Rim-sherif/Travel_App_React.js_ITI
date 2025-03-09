@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
@@ -12,12 +12,13 @@ const baseUrl = "http://localhost:3000/api/v1";
 export default function Navbar() {
   const [searchShow, setSearchShow] = useState(false);
   const [profileShow, setProfileShow] = useState(false);
+  const [searchVal,setSearchVal] = useState("");
   const {userToken} = useContext(UserContext);
   const [data , setData] = useState({});
   const profileDiv = useRef(null);
   const dispatch = useDispatch();
   const user = useSelector(store=>store.user);
-  
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(userToken){
@@ -47,6 +48,16 @@ export default function Navbar() {
 
   document.addEventListener("click", handleClickOutside);
 
+  const searchChangeVal = (e)=>{
+    console.log(e.target.value);
+    setSearchVal(e.target.value);
+  }
+
+  const searchBtn = ()=>{
+    console.log(searchVal);
+    navigate(`/search?search=${searchVal}`)
+  }
+
   return (
     <div className="py-3 border-b border-gray-100">
       <div className="w-[80%] mx-auto flex justify-between items-center">
@@ -57,13 +68,14 @@ export default function Navbar() {
           <div className="relative w-[500px] hidden lg:block">
             <input
               type="text"
+              onChange={searchChangeVal}
               placeholder="Find places and things to do"
               className="py-3 px-11 w-full outline-0 text-[14px] rounded-4xl font-semibold text-gray-600 border border-gray-200"
             />
             <div className="search_icon absolute top-[12px] text-gray-600 left-4">
               <i className="fa-solid fa-magnifying-glass"></i>
             </div>
-            <button className="bg-[#0071eb] font-bold absolute top-[6.4px] right-3 cursor-pointer text-white rounded-4xl py-2 text-[12px] px-6">
+            <button onClick={searchBtn} className="bg-[#0071eb] font-bold absolute top-[6.4px] right-3 cursor-pointer text-white rounded-4xl py-2 text-[12px] px-6">
               Search
             </button>
           </div>
@@ -79,6 +91,8 @@ export default function Navbar() {
           {searchShow ? (
             <div className="fixed top-20 lg:hidden bg-white p-5 w-full left-0 ">
               <input
+                onChange={searchChangeVal}
+                name="search"
                 type="text"
                 placeholder="Find places and things to do"
                 className="py-3 px-11 w-full outline-0 text-[14px] rounded-4xl font-semibold text-gray-600 border border-gray-200"

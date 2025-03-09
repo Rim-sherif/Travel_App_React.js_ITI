@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,7 +7,6 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const fetchTrip = async (id) => {
   const { data } = await axios.get(`http://localhost:3000/api/v1/trips/${id}`);
-  console.log(data.trip);
   return data.trip;
 };
 const token = localStorage.getItem("token");
@@ -15,7 +14,7 @@ const token = localStorage.getItem("token");
 const TripDetailsPage = () => {
   const { id } = useParams();
   const [added, setAdded] = useState(false);
-
+  const navigate = useNavigate();
   const checkWishlistStatus = async () => {
     try {
       const response = await fetch(
@@ -31,7 +30,6 @@ const TripDetailsPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Wishlist Status Response:", data);
         setAdded(data.inWishlist);
       }
     } catch (error) {
@@ -91,6 +89,19 @@ const TripDetailsPage = () => {
       </div>
     );
 
+    async function bookNowFun(data){
+      console.log(data);
+      const {data:url} = await axios.post(`http://localhost:3000/api/v1/payment/checkout` , data , {
+        headers: {
+          authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        }
+      })
+      console.log(url.session);
+      
+      window.location = url.url;
+    }
+
   return (
     <div className="mx-auto px-4 py-6 max-w-7xl">
       <div className="w-full flex flex-col items-center">
@@ -149,7 +160,7 @@ const TripDetailsPage = () => {
                 <span className="ml-2">Add to Wishlist</span>
               </span>
               <span className=" items-center cursor-pointer hover:text-gray-900 ml-4">
-                <i class="fa-solid fa-arrow-up-right-from-square text-[16px]"></i>{" "}
+                <i className="fa-solid fa-arrow-up-right-from-square text-[16px]"></i>{" "}
                 <span className="ml-2">Share</span>
               </span>
             </div>
@@ -246,7 +257,7 @@ const TripDetailsPage = () => {
                     </select>
                   </div>
 
-                  <button className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition-colors">
+                  <button onClick={()=>bookNowFun(data)} className="w-full cursor-pointer bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition-colors">
                     Book Now
                   </button>
                 </div>

@@ -22,9 +22,8 @@ import Trips from "./componants/Dashboard/Trips";
 import Category from "./componants/Dashboard/Category";
 import Orders from "./componants/Dashboard/Orders";
 import Footer from "./componants/Footer/Footer";
-import ChatIcon from "./componants/Chat/ChatIcon";
-import ChatPage from "./componants/chat/chat";
-import About from "./componants/About/About";
+import Booking from "./componants/Booking/Booking";
+import CancelPayment from "./componants/Cancel/CancelPayment";
 
 function App() {
   const location = window.location;
@@ -73,6 +72,12 @@ function App() {
                 }
               />
             </Route>
+            <Route path="/support" element={<Support />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/cancelPayment" element={<CancelPayment />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/register" element={<Register />} />
+       
               <Route path="/dashboard" element={<DashboardLayout />}>
                 <Route index path="/dashboard" element={<Trips />} />
                 <Route path="trips" element={<Trips />} />
