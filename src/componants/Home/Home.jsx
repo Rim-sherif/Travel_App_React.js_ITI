@@ -2,7 +2,6 @@ import Categories from "../Categories/Categories";
 import HeroSection from "../HeroSection/HeroSection";
 import Offers from "../Offers/Offers";
 import TripsList from "../Triplist/TripList";
-import Video from "../Video/Video";
 
 export default function Home(){
     return (
@@ -10,9 +9,7 @@ export default function Home(){
             <HeroSection />
             <Categories />
             <TripsList/>
-            <Offers />
-            <Video/>
-         
+            <Offers />         
         </div>
     )
 }

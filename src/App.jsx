@@ -18,20 +18,23 @@ import ProtectedRoute from "./componants/ProtectedRoute/ProtectedRoute";
 import AdminRoute from "./componants/AdminRoute/AdminRoute";
 import TripDetailsPage from "./componants/SingleTrip/Singletrip";
 import DashboardLayout from "./componants/Dashboard/DashboardLayout";
-import { Children } from "react";
 import Trips from "./componants/Dashboard/Trips";
 import Category from "./componants/Dashboard/Category";
 import Orders from "./componants/Dashboard/Orders";
 import Footer from "./componants/Footer/Footer";
 import ChatIcon from "./componants/Chat/ChatIcon";
 import ChatPage from "./componants/chat/chat";
+import About from "./componants/About/About";
 
 function App() {
   const location = window.location;
   const navbar =
-    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard";
+    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips"
+    || location.pathname == "/dashboard/category" || location.pathname == "/dashboard/orders";
+    
   const footer =
-    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard";
+    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips" 
+    || location.pathname == "/dashboard/category" || location.pathname == "/dashboard/orders";
 
   return (
     <>
@@ -75,6 +78,7 @@ function App() {
                 <Route path="category" element={<Category />} />
                 <Route path="orders" element={<Orders />} />
             </Route>
+            <Route path="/about" element={<About />} />
             <Route path="/support" element={<Support />} />
             <Route path="/register" element={<Register />} /> 
             <Route path="/login" element={<Login />} />

@@ -1,13 +1,11 @@
 import img1 from "/google-play-badge-en-us.svg";
 import img2 from "/app-store-badge-en-us.svg";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 export default function Footer() {
-
-    const currentYear = new Date().getFullYear();
-
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-neutral-900 text-gray-300">
+    <footer className="bg-gradient-to-r from-blue-900 to-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
@@ -187,7 +185,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-8 text-center text-sm text-gray-400">
-              © {currentYear} Travel Explorer. All rights reserved.
+            © {currentYear} Travel Explorer. All rights reserved.
           </div>
         </div>
       </div>
