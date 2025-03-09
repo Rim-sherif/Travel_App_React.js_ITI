@@ -8,6 +8,7 @@ import { fetchUsers } from "../../api/searchUser";
 import { fetchMessagesAPI } from "../../api/messagesAPI.js";
 import { io } from "socket.io-client";
 import defultImg from "/avatar.png"
+import Navbar from "../Navbar/Navbar.jsx";
 
 const currentUserId = localStorage.getItem("userId");
 const token = localStorage.getItem("token");
@@ -215,8 +216,7 @@ const ChatPage = () => {
 
   return (
     <div className="h-screen flex flex-col bg-white text-gray-900 transition-colors duration-300">
-      {/* <TopBarComponent /> */}
-      <Navbar></Navbar>
+      <Navbar/>
       <div className="flex flex-1 overflow-hidden">
         <SidebarComponent
           conversations={conversations}
