@@ -1,32 +1,45 @@
 import { Link } from "react-router-dom";
 
-
 export default function Support() {
   return (
-    <>
-        <div className="w-[80%] mx-auto my-20">
-            <h2 className="text-center text-3xl font-bold mb-2.5">Welcome to the Help Center</h2>
-            
-            
-            <div className="w-[50%] mx-auto">
-            <h3 className="font-semibold mt-8 mb-2 text-lg text-blue-500">How to plan your trip</h3>
-                <p className="mb-3">
-                To help you plan and make the most of your next trip, we are pleased to provide you with some general destination tips and recommendations such as:
-                </p>
-                <li>Places to see</li>
-                <li>Things to do</li>
-                <li>Trip inspiration</li>
-                <p className="my-3">
-                    For selected cities, you can also find a curated 48-hour itinerary featuring the most iconic experiences. Please note that the availability of these itineraries may depend on the language in which you're viewing our website. You can access this information by searching for a city in the search bar on our website and clicking the 'Trip inspiration' drop-down at the top of the page.
-                </p>
-                <p>
-                    You can bookmark activities of particular interest and save them in a wishlist. Just click the heart icon on an activity page or card. You can view your wishlists by clicking the heart icon at the top of our website.
-                </p>      
-                <strong className="mt-7 text-[18px] block">Still need help?</strong>
-                <Link className="inline-block mt-3 border-2 border-blue-600 text-blue-600 font-bold py-2 px-5 rounded-3xl text-sm" to="mailto:abdulrahman.fawzy25@gmail.com">Contact us</Link>
-            </div>
+    <div className="max-w-4xl mx-auto my-20 p-6 bg-white shadow-lg rounded-lg">
+      <h2 className="text-center text-4xl font-bold text-gray-800 mb-6">
+        Welcome to the Help Center
+      </h2>
+
+      <div className="mt-8">
+        <h3 className="text-xl font-semibold text-blue-600 mb-3">
+          How to Plan Your Trip
+        </h3>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          To help you plan and make the most of your next trip, here are some tips and recommendations:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <li><strong>Places to see</strong></li>
+          <li><strong>Things to do</strong></li>
+          <li><strong>Trip inspiration</strong></li>
+        </ul>
+
+        <p className="text-gray-700 mt-4 leading-relaxed">
+          For selected cities, you can find a curated 48-hour itinerary featuring the most iconic experiences. Please note that availability depends on the language settings of our website. 
+        </p>
+        <p className="text-gray-700 mt-2 leading-relaxed">
+          You can bookmark activities and save them in a wishlist by clicking the heart icon on an activity page. View your wishlists by clicking the heart icon at the top of our website.
+        </p>
+      </div>
+
+      {/* Contact Us Section */}
+      <div className="mt-8 text-center">
+        <strong className="text-lg text-gray-800">Still need help?</strong>
+        <div className="mt-4">
+          <Link
+            to="mailto:abdulrahman.fawzy25@gmail.com"
+            className="inline-block bg-blue-600 text-white font-medium py-2.5 px-6 rounded-full text-sm shadow-md transition-all duration-300 hover:bg-blue-700"
+          >
+            Contact Us
+          </Link>
         </div>
-     
-    </>
-  )
+      </div>
+    </div>
+  );
 }

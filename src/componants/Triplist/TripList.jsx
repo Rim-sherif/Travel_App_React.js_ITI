@@ -34,9 +34,8 @@ const TripsList = () => {
           const durationDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
 
           return (
-            <Link to={`/trips/${trip._id}`}>
+            <Link to={`/trips/${trip._id}`}key={trip._id}>
             <TripCard
-              key={trip._id}
               imageUrl={trip.images[0]}
               title={trip.title}
               duration={`${durationDays} days`}
