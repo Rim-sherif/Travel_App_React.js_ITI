@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import emptyImg from '../../../public/empty-wishlist.webp'
+import emptyImg from '/empty-wishlist.webp'
 
 const fetchWishlist = async () => {
   const token = localStorage.getItem("token");
