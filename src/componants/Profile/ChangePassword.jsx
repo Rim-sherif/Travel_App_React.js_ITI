@@ -5,7 +5,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 
-const baseUrl = "http://localhost:5000/api/v1";
+const baseUrl = "http://localhost:3000/api/v1";
 
 export default function ChangePassword() {
   const {userToken} = useContext(UserContext);

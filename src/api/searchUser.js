@@ -1,5 +1,5 @@
 export async function fetchUsers(token, value) {
-  const API_URL = `http://localhost:5000/api/v1/user/?search=${value}`;
+  const API_URL = `http://localhost:3000/api/v1/user/?search=${value}`;
   try {
     const response = await fetch(API_URL, {
       headers: {

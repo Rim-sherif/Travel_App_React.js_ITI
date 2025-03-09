@@ -7,7 +7,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDataThunk } from "../../redux/reducers/userSlice";
 
-const baseUrl = "http://localhost:5000/api/v1";
+const baseUrl = "http://localhost:3000/api/v1";
 
 export default function Navbar() {
   const [searchShow, setSearchShow] = useState(false);

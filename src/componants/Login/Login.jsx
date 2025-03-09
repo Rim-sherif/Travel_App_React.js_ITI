@@ -16,7 +16,7 @@ export default function Login() {
       setApiError(null);
       setLoading(true);
       let { data } = await axios.post(
-        `http://localhost:5000/api/v1/auth/login`,
+        `http://localhost:3000/api/v1/auth/login`,
         values
       );
       if (data.message == "Success") {

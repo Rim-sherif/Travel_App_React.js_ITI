@@ -1,5 +1,5 @@
 export async function fetchMessagesAPI(token, conversationId) {
-    const API_message_URL = `http://localhost:5000/api/v1/messages?conversationId=${conversationId}&createdAt:desc&page=1&size=30`;
+    const API_message_URL = `http://localhost:3000/api/v1/messages?conversationId=${conversationId}&createdAt:desc&page=1&size=30`;
 
     try {
       const response = await fetch(API_message_URL, {

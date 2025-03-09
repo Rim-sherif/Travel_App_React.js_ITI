@@ -65,7 +65,7 @@ export default function Trips() {
       };
 
       let { data } = await axios.post(
-        `http://localhost:5000/api/v1/trips/${selectedCategory}`,
+        `http://localhost:3000/api/v1/trips/${selectedCategory}`,
         formData,
         { headers }
       );

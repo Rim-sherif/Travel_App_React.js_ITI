@@ -12,7 +12,7 @@ const fetchWishlist = async () => {
     throw new Error("User not authenticated. No token found.");
   }
 
-  const response = await fetch("http://localhost:5000/api/v1/trips/wishlist", {
+  const response = await fetch("http://localhost:3000/api/v1/trips/wishlist", {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const fetchWishlist = async () => {
 const removeFromWishlist = async (tripId) => {
   const token = localStorage.getItem("token");
 
-  const response = await fetch(`http://localhost:5000/api/v1/trips/wishlist/remove/${tripId}`, {
+  const response = await fetch(`http://localhost:3000/api/v1/trips/wishlist/remove/${tripId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,

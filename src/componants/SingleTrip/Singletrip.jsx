@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const fetchTrip = async (id) => {
-  const { data } = await axios.get(`http://localhost:5000/api/v1/trips/${id}`);
+  const { data } = await axios.get(`http://localhost:3000/api/v1/trips/${id}`);
   console.log(data.trip);
   return data.trip;
 };
@@ -19,7 +19,7 @@ const TripDetailsPage = () => {
   const checkWishlistStatus = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/trips/wishlist/status/${id}`,
+        `http://localhost:3000/api/v1/trips/wishlist/status/${id}`,
         {
           method: "GET",
           headers: {
@@ -44,7 +44,7 @@ const TripDetailsPage = () => {
   }, [id]);
 
   const addToWishlist = async (id) => {
-    await fetch(`http://localhost:5000/api/v1/trips/wishlist/add/${id}`, {
+    await fetch(`http://localhost:3000/api/v1/trips/wishlist/add/${id}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -55,7 +55,7 @@ const TripDetailsPage = () => {
     setAdded(true);
   };
   const removeFromWishlist = async (id) => {
-    await fetch(`http://localhost:5000/api/v1/trips/wishlist/remove/${id}`, {
+    await fetch(`http://localhost:3000/api/v1/trips/wishlist/remove/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
