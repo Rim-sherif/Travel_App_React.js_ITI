@@ -15,9 +15,9 @@ const SideMenu = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <button
-        className="lg:hidden absolute top-4 left-4 text-white bg-blue-600 p-3 rounded-full z-50"
+        className="lg:hidden absolute top-4 left-4 text-white bg-blue-800 p-3 rounded-full z-50"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         <i className={`fa-solid ${isSidebarOpen ? "fa-xmark" : "fa-bars"}`}></i>
@@ -32,7 +32,7 @@ const SideMenu = () => {
       <nav
         className={`${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 lg:w-62 w-62 min-h-screen bg-blue-600 text-white flex flex-col p-4 space-y-4 fixed top-0 left-0 z-50 transition-all duration-300 ease-in-out transform border-r-4 border-gray-800`}
+        } lg:translate-x-0 lg:w-62 w-62 min-h-screen bg-blue-800 text-white flex flex-col p-4 space-y-4 fixed top-0 left-0 z-50 transition-all duration-300 ease-in-out transform border-r-4 border-gray-800`}
       >
         <button
           className="lg:hidden absolute top-4 right-4 text-white hover:text-gray-300"

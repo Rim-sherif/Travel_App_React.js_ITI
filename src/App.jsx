@@ -31,11 +31,11 @@ import ChatPage from "./componants/Chat/Chat";
 function App() {
   const location = window.location;
   const navbar =
-    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips" || location.pathname =="/Chat"
+    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips"|| location.pathname == "/dashboard" || location.pathname =="/Chat"
     || location.pathname == "/dashboard/category" || location.pathname == "/dashboard/orders";
     
   const footer =
-    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips" || location.pathname =="/Chat"
+    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips" || location.pathname == "/dashboard" || location.pathname =="/Chat"
     || location.pathname == "/dashboard/category" || location.pathname == "/dashboard/orders";
 
     const chat = location.pathname == "/Chat" ||location.pathname == "/login" || location.pathname == "/register"
