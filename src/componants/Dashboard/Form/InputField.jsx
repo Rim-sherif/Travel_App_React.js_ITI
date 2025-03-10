@@ -5,7 +5,7 @@ export function InputField({ label, placeholder, error, ...props }) {
       <input 
         {...props} 
         placeholder={placeholder} 
-        className="w-full border p-3 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
+        className="w-full border p-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
       />
       {error && <p className="text-red-500 text-xs">{error}</p>}
     </div>

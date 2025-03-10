@@ -90,14 +90,15 @@ export default function AddTripModal({ isOpen, onClose, onTripAdded }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
+    <div className="fixed inset-0 w-full  flex items-center justify-center p-4 shadow-2xl">
+      <div className="bg-white rounded-lg p-4 w-full max-w-3xl">
         <h2 className="text-2xl font-bold mb-4">Add New Trip</h2>
         
         <form onSubmit={formik.handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-2 gap-4">
           <InputField label="Title" name="title" formik={formik} />
           <InputField label="Destination" name="destination" formik={formik} />
-          
+          </div>
           <div className="grid grid-cols-2 gap-4">
             <DateInput
               label="Departure Date"
