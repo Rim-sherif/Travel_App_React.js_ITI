@@ -7,7 +7,7 @@ const SideMenu = () => {
   const menuItems = [
     { path: "trips", name: "Trips", icon: "fa-solid fa-bus" },
     { path: "category", name: "Category", icon: "fa-solid fa-list" },
-    { path: "orders", name: "Orders", icon: "fa-solid fa-box" },
+    // { path: "orders", name: "Orders", icon: "fa-solid fa-box"},
     { path: "/", name: "Home", icon: "fa-solid fa-home" },
 
   ];

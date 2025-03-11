@@ -45,7 +45,7 @@ function App() {
         <BrowserRouter>
           {!navbar && <Navbar />}
           <Routes>
-            <Route index path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/trips/:id" element={<TripDetailsPage />} />
@@ -79,15 +79,14 @@ function App() {
             <Route path="/booking" element={<Booking />} />
             <Route path="/cancelPayment" element={<CancelPayment />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/register" element={<Register />} />
-       
+            <Route path="/register" element={<Register />} />     
               <Route path="/dashboard" element={<DashboardLayout />}>
                 <Route index path="/dashboard" element={<Trips />} />
                 <Route path="trips" element={<Trips />} />
                 <Route path="category" element={<Category />} />
                 <Route path="orders" element={<Orders />} />
             </Route>
-            <Route path="/about" element={<AboutUs />} />
+            <Route index path="/about" element={<AboutUs />} />
             <Route path="/support" element={<Support />} />
             <Route path="/register" element={<Register />} /> 
             <Route path="/login" element={<Login />} />

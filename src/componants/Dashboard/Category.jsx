@@ -146,7 +146,7 @@ export default function Categories() {
         <table className="min-w-full divide-y divide-gray-200 bg-white">
           <thead className="bg-gray-100 text-gray-700">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-bold uppercase">#</th>
+              <th className="px-6 py-4 text-left text-sm font-bold uppercase">Number</th>
               <th className="px-6 py-4 text-left text-sm font-bold uppercase">Name</th>
               <th className="px-6 py-4 text-left text-sm font-bold uppercase">Actions</th>
             </tr>
