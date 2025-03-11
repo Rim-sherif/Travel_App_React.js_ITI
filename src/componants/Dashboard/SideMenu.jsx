@@ -8,6 +8,8 @@ const SideMenu = () => {
     { path: "trips", name: "Trips", icon: "fa-solid fa-bus" },
     { path: "category", name: "Category", icon: "fa-solid fa-list" },
     { path: "orders", name: "Orders", icon: "fa-solid fa-box" },
+    { path: "/", name: "Home", icon: "fa-solid fa-home" },
+
   ];
 
   const closeSidebar = () => {
@@ -15,9 +17,9 @@ const SideMenu = () => {
   };
 
   return (
-    <div className="relative ">
+    <div>
       <button
-        className="lg:hidden absolute top-4 left-4 text-white bg-blue-800 p-3 rounded-full z-50"
+        className="lg:hidden absolute top-4 left-4 text-white bg-blue-800 p-3 rounded-full"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         <i className={`fa-solid ${isSidebarOpen ? "fa-xmark" : "fa-bars"}`}></i>

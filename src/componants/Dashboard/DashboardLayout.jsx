@@ -3,7 +3,7 @@ import SideMenu from './SideMenu';
 
 const DashboardLayout = () => {
   return (
-    <div className="grid grid-cols-[250px_1fr] min-h-screen">
+    <div className="grid lg:grid-cols-[250px_1fr] min-h-screen">
       <SideMenu />
       <main className="p-8 bg-gray-50">
         <Outlet />

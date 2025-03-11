@@ -25,7 +25,13 @@ export default function Login() {
         localStorage.setItem("userRole", data.userRole); 
         localStorage.setItem("avatar",data.image )
         setUserToken(data.token);
-        navigate("/");
+        if(data.userRole === "admin" ){
+          navigate("/dashboard");
+    
+        }else{
+
+          navigate("/");
+        }
       }
     } catch (error) {
       setApiError(error.response.data.message);

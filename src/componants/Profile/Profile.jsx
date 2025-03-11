@@ -37,6 +37,7 @@ export default function Profile() {
     setUserToken(null);
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
+    localStorage.removeItem("userRole");
     
     navigate("/login");
   }

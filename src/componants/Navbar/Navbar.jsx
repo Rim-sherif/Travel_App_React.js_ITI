@@ -3,11 +3,9 @@ import logo from "../../assets/logo.svg";
 import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { notify } from "../Toast/Toast";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDataThunk } from "../../redux/reducers/userSlice";
 
-const baseUrl = "http://localhost:3000/api/v1";
 
 export default function Navbar() {
   const [searchShow, setSearchShow] = useState(false);
@@ -130,30 +128,43 @@ export default function Navbar() {
               >
                 <h4 className="font-semibold mb-5 text-xl">Profile</h4>
 
-                {userToken ? 
-                    <Link
-                  to="/profile/account"
-                  onClick={()=>setProfileShow(false)}
-                  className="text-[14px] block mb-3 font-medium"
-                >
-                  <i className="fa-regular fa-circle-right me-1"></i> {data?.name}
-                </Link> : <Link
-                    to="/login"
-                    onClick={()=>setProfileShow(false)}
-                    className="text-[14px] block mb-3 font-medium"
-                  >
-                    <i className="fa-regular fa-circle-right me-1"></i> Log in or
-                    Sign up
-                  </Link>
-                }
-                <hr className="text-zinc-200" />
-                <Link
-                  to="/support"
-                  onClick={()=>setProfileShow(false)}
-                  className="text-[14px] block mt-4 mb-1 font-medium"
-                >
-                  <i className="fa-regular fa-circle-question me-1"></i> Support
-                </Link>
+{userToken ? (
+  <>
+    <Link
+      to="/profile/account"
+      onClick={() => setProfileShow(false)}
+      className="text-[14px] block mb-3 font-medium"
+    >
+      <i className="fa-regular fa-circle-right me-1"></i> {data?.name}
+    </Link> 
+    {localStorage.getItem("userRole") === "admin" && (
+      <Link
+        to="/dashboard/"
+        onClick={() => setProfileShow(false)}
+        className="text-[14px] block mb-3 font-medium"
+      >
+        <i className="fa-regular fa-circle-right me-1"></i> Dashboard
+      </Link>
+    )}
+  </>
+) : (
+  <Link
+    to="/login"
+    onClick={() => setProfileShow(false)}
+    className="text-[14px] block mb-3 font-medium"
+  >
+    <i className="fa-regular fa-circle-right me-1"></i> Log in or Sign up
+  </Link>
+)}
+<hr className="text-zinc-200" />
+<Link
+  to="/support"
+  onClick={() => setProfileShow(false)}
+  className="text-[14px] block mt-4 mb-1 font-medium"
+>
+  <i className="fa-regular fa-circle-question me-1"></i> Support
+</Link>
+
               </div>
             ) : (
               ""
