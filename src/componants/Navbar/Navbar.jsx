@@ -3,11 +3,9 @@ import logo from "../../assets/logo.svg";
 import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { notify } from "../Toast/Toast";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDataThunk } from "../../redux/reducers/userSlice";
 
-const baseUrl = "http://localhost:3000/api/v1";
 
 export default function Navbar() {
   const [searchShow, setSearchShow] = useState(false);
@@ -54,8 +52,11 @@ export default function Navbar() {
   }
 
   const searchBtn = ()=>{
-    console.log(searchVal);
-    navigate(`/search?search=${searchVal}`)
+    if(searchVal != ""){
+      navigate(`/search?search=${searchVal}`)
+    }else{
+      notify( "write value you want please!" , "error")
+    }
   }
 
   return (
@@ -68,6 +69,7 @@ export default function Navbar() {
           <div className="relative w-[500px] hidden lg:block">
             <input
               type="text"
+              onKeyUp={(e)=>e.key === "Enter" ? searchBtn() : ""}
               onChange={searchChangeVal}
               placeholder="Find places and things to do"
               className="py-3 px-11 w-full outline-0 text-[14px] rounded-4xl font-semibold text-gray-600 border border-gray-200"
@@ -126,30 +128,43 @@ export default function Navbar() {
               >
                 <h4 className="font-semibold mb-5 text-xl">Profile</h4>
 
-                {userToken ? 
-                    <Link
-                  to="/profile/account"
-                  onClick={()=>setProfileShow(false)}
-                  className="text-[14px] block mb-3 font-medium"
-                >
-                  <i className="fa-regular fa-circle-right me-1"></i> {data?.name}
-                </Link> : <Link
-                    to="/login"
-                    onClick={()=>setProfileShow(false)}
-                    className="text-[14px] block mb-3 font-medium"
-                  >
-                    <i className="fa-regular fa-circle-right me-1"></i> Log in or
-                    Sign up
-                  </Link>
-                }
-                <hr className="text-zinc-200" />
-                <Link
-                  to="/support"
-                  onClick={()=>setProfileShow(false)}
-                  className="text-[14px] block mt-4 mb-1 font-medium"
-                >
-                  <i className="fa-regular fa-circle-question me-1"></i> Support
-                </Link>
+{userToken ? (
+  <>
+    <Link
+      to="/profile/account"
+      onClick={() => setProfileShow(false)}
+      className="text-[14px] block mb-3 font-medium"
+    >
+      <i className="fa-regular fa-circle-right me-1"></i> {data?.name}
+    </Link> 
+    {localStorage.getItem("userRole") === "admin" && (
+      <Link
+        to="/dashboard/"
+        onClick={() => setProfileShow(false)}
+        className="text-[14px] block mb-3 font-medium"
+      >
+        <i className="fa-regular fa-circle-right me-1"></i> Dashboard
+      </Link>
+    )}
+  </>
+) : (
+  <Link
+    to="/login"
+    onClick={() => setProfileShow(false)}
+    className="text-[14px] block mb-3 font-medium"
+  >
+    <i className="fa-regular fa-circle-right me-1"></i> Log in or Sign up
+  </Link>
+)}
+<hr className="text-zinc-200" />
+<Link
+  to="/support"
+  onClick={() => setProfileShow(false)}
+  className="text-[14px] block mt-4 mb-1 font-medium"
+>
+  <i className="fa-regular fa-circle-question me-1"></i> Support
+</Link>
+
               </div>
             ) : (
               ""

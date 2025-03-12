@@ -55,12 +55,12 @@ const TripCard = ({
         className="absolute top-2 right-2 cursor-pointer transition-colors duration-300 hover:text-red-600 z-10"
         onClick={toggleLike}
       >
-        <FontAwesomeIcon
+        {/* <FontAwesomeIcon
           icon={isLiked ? solidHeart : regularHeart}
           className={`text-2xl ${
             isLiked ? "text-red-500" : "text-white"
           } transition-colors duration-300`}
-        />
+        /> */}
       </div>
       <img
         src={imageUrl}

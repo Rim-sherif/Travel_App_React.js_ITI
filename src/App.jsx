@@ -22,77 +22,80 @@ import Trips from "./componants/Dashboard/Trips";
 import Category from "./componants/Dashboard/Category";
 import Orders from "./componants/Dashboard/Orders";
 import Footer from "./componants/Footer/Footer";
+import Booking from "./componants/Booking/Booking";
+import CancelPayment from "./componants/Cancel/CancelPayment";
+import AboutUs from "./componants/About/About";
 import ChatIcon from "./componants/Chat/ChatIcon";
-import ChatPage from "./componants/chat/chat";
-import About from "./componants/About/About";
+import ChatPage from "./componants/Chat/Chat";
 
-const AppRoutes = () => {
-  const location = useLocation();
-  const currentPath = location.pathname;
-    const hideNavbarPaths = [
-    "/login",
-    "/register",
-    "/dashboard/trips",
-    "/Chat",
-    "/dashboard/category",
-    "/dashboard/orders",
-  ];
-  const hideFooterPaths = hideNavbarPaths;
-  const hideChatIconPaths = ["/Chat", "/login", "/register"];
-
-  // this return true or false he map on arr and check if current pass in arr if yes he return false
-  const showNavbar = !hideNavbarPaths.includes(currentPath);
-  const showFooter = !hideFooterPaths.includes(currentPath);
-  const showChatIcon = !hideChatIconPaths.includes(currentPath);
+function App() {
+  const location = window.location;
+  const navbar =
+    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips"|| location.pathname == "/dashboard" || location.pathname =="/Chat"
+    || location.pathname == "/dashboard/category" || location.pathname == "/dashboard/orders";
+    
+  const footer =
+    location.pathname == "/login" || location.pathname == "/register" || location.pathname == "/dashboard/trips" || location.pathname == "/dashboard" || location.pathname =="/Chat"
+    || location.pathname == "/dashboard/category" || location.pathname == "/dashboard/orders";
 
   return (
     <>
-      {showNavbar && <Navbar />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/trips/:id" element={<TripDetailsPage />} />
-        <Route path="/Chat" element={<ChatPage />} />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        >
-          <Route
-            path="account"
-            element={
-              <ProtectedRoute>
-                <Account />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="changePassword"
-            element={
-              <ProtectedRoute>
-                <ChangePassword />
-              </ProtectedRoute>
-            }
-          />
-        </Route>
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<Trips />} />
-          <Route path="trips" element={<Trips />} />
-          <Route path="category" element={<Category />} />
-          <Route path="orders" element={<Orders />} />
-        </Route>
-        <Route path="/about" element={<About />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/register" element={<Register />} /> 
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Notfound />} />
-      </Routes>
-      {showChatIcon && <ChatIcon />}
-      {showFooter && <Footer />}
+      <Provider store={store}>
+        <BrowserRouter>
+          {!navbar && <Navbar />}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/trips/:id" element={<TripDetailsPage />} />
+            <Route path="/Chat" element={<ChatPage />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            >
+              <Route
+                path="account"
+                element={
+                  <ProtectedRoute>
+                    <Account />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="changePassword"
+                element={
+                  <ProtectedRoute>
+                    <ChangePassword />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+            <Route path="/support" element={<Support />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/cancelPayment" element={<CancelPayment />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/register" element={<Register />} />     
+              <Route path="/dashboard" element={<DashboardLayout />}>
+                <Route index path="/dashboard" element={<Trips />} />
+                <Route path="trips" element={<Trips />} />
+                <Route path="category" element={<Category />} />
+                <Route path="orders" element={<Orders />} />
+            </Route>
+            <Route index path="/about" element={<AboutUs />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/register" element={<Register />} /> 
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Notfound />} />
+          </Routes>
+          {!chat && <ChatIcon />}
+          {!footer && <Footer />}
+        </BrowserRouter>
+        <Toaster />
+      </Provider>
     </>
   );
 };
